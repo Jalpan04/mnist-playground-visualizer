@@ -16,8 +16,25 @@ limitations under the License.
 /* General Type */
 
 body {
-  font-family: "Helvetica", "Arial", sans-serif;
-  background-color: #f7f7f7;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #05070a;
+  color: #e0e0e0;
+  -webkit-font-smoothing: antialiased;
+}
+
+header {
+  background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  border-bottom: none;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  padding: 20px 0;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 h1 {
@@ -231,10 +248,12 @@ header h1 .optional {
 /* Top Controls */
 
 #top-controls {
-  border-bottom: 1px solid #ddd;
-  padding: 18px 0;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-  background: white;
+  background: rgba(13, 17, 23, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 16px 0;
+  color: white;
 }
 
 @media (min-height: 700px) {
@@ -291,39 +310,20 @@ header h1 .optional {
   margin-top: 6px;
 }
 
-#top-controls .control .label,
 #top-controls .control label {
-  color: #777;
-  font-size: 13px;
-  display: block;
-  margin-bottom: 6px;
-  font-weight: 300;
-}
-
-#top-controls .control .value {
-  font-size: 24px;
-  margin: 0;
-  font-weight: 300;
-}
-
-#top-controls .control .select {
-  position: relative;
+  color: #8b949e;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
 }
 
 #top-controls .control select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  display: block;
-  background: none;
-  border: none;
-  border-radius: 0;
-  padding: 6px 0;
-  width: 100%;
-  font-size: 14px;
-  border-bottom: solid 1px #ccc;
-  color: #333;
-  outline: none;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  padding: 8px 12px;
+  color: white;
+  margin-top: 4px;
 }
 
 #top-controls .control select:focus {
@@ -331,7 +331,6 @@ header h1 .optional {
 }
 
 #top-controls .control .select::after {
-  class: "material-icons";
   content: "arrow_drop_down";
   color: #999;
   font-family: 'Material Icons';
@@ -373,17 +372,13 @@ header h1 .optional {
 /* Main Part*/
 
 #main-part {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
-  -webkit-justify-content: space-between;
   justify-content: space-between;
   margin-top: 30px;
   margin-bottom: 50px;
-  padding-top: 2px;
+  padding: 0 20px;
   position: relative;
+  gap: 20px;
 }
 
 @media (min-height: 700px) {
@@ -393,29 +388,31 @@ header h1 .optional {
 }
 
 #main-part h4 {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  align-items: center;
-  font-weight: 400;
-  font-size: 16px;
+  font-weight: 600;
+  font-size: 14px;
   text-transform: uppercase;
-  position: relative;
-  padding-bottom: 8px;
-  margin: 0;
-  line-height: 1.4em;
+  letter-spacing: 1.5px;
+  color: #fff;
+  margin: 0 0 15px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 10px;
 }
 
 #main-part p,
 #main-part .column .label,
 #main-part .column label {
-  font-weight: 300;
-  line-height: 1.38em;
-  margin: 0;
-  color: #777;
-  font-size: 13px;
+  font-weight: 400;
+  color: #8b949e;
+  font-size: 12px;
+}
+
+.column {
+  background: rgba(22, 27, 34, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .more {
@@ -490,7 +487,7 @@ g.column rect {
 }
 
 .data.column {
-  width: 10%;
+  width: 20%;
 }
 
 .data.column .dataset-list {
@@ -587,8 +584,9 @@ g.column rect {
 /* Features column */
 
 .features.column {
-  width: 10%;
+  flex: 1;
   position: relative;
+  min-width: 400px;
 }
 
 .features.column .plus-minus-neurons {
@@ -695,6 +693,10 @@ g.column rect {
   opacity: 1.0;
 }
 
+@keyframes flowing {
+  from { stroke-dashoffset: 0; } to { stroke-dashoffset: -10; }
+}
+
 @-webkit-keyframes flowing {
   from { stroke-dashoffset: 0; } to { stroke-dashoffset: -10; }
 }
@@ -743,7 +745,7 @@ g.column rect {
 /* Hidden layers column */
 
 .hidden-layers.column {
-  width: 40%;
+  width: 100px;
 }
 
 #main-part .hidden-layers h4 {
@@ -791,7 +793,20 @@ g.column rect {
   position: relative;
   font-weight: 300;
   font-size: 13px;
-  height: 60px;
+  color: #fff;
+}
+
+.output-stats span {
+  color: #8b949e;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+}
+
+.output-stats .value {
+  font-size: 24px;
+  color: #fff;
+  font-weight: 600;
 }
 
 #linechart {

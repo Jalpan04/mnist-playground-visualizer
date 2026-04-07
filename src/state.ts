@@ -35,18 +35,10 @@ export let regularizations: {[key: string]: nn.RegularizationFunction} = {
 };
 
 /** A map between dataset names and functions that generate classification data. */
-export let datasets: {[key: string]: dataset.DataGenerator} = {
-  "circle": dataset.classifyCircleData,
-  "xor": dataset.classifyXORData,
-  "gauss": dataset.classifyTwoGaussData,
-  "spiral": dataset.classifySpiralData,
-};
+export let datasets: {[key: string]: any} = {};
 
 /** A map between dataset names and functions that generate regression data. */
-export let regDatasets: {[key: string]: dataset.DataGenerator} = {
-  "reg-plane": dataset.regressPlane,
-  "reg-gauss": dataset.regressGaussian
-};
+export let regDatasets: {[key: string]: any} = {};
 
 export function getKeyFromValue(obj: any, value: any): string {
   for (let key in obj) {
@@ -111,22 +103,8 @@ export class State {
     {name: "regDataset", type: Type.OBJECT, keyMap: regDatasets},
     {name: "learningRate", type: Type.NUMBER},
     {name: "regularizationRate", type: Type.NUMBER},
-    {name: "noise", type: Type.NUMBER},
     {name: "networkShape", type: Type.ARRAY_NUMBER},
     {name: "seed", type: Type.STRING},
-    {name: "showTestData", type: Type.BOOLEAN},
-    {name: "discretize", type: Type.BOOLEAN},
-    {name: "percTrainData", type: Type.NUMBER},
-    {name: "x", type: Type.BOOLEAN},
-    {name: "y", type: Type.BOOLEAN},
-    {name: "xTimesY", type: Type.BOOLEAN},
-    {name: "xSquared", type: Type.BOOLEAN},
-    {name: "ySquared", type: Type.BOOLEAN},
-    {name: "cosX", type: Type.BOOLEAN},
-    {name: "sinX", type: Type.BOOLEAN},
-    {name: "cosY", type: Type.BOOLEAN},
-    {name: "sinY", type: Type.BOOLEAN},
-    {name: "collectStats", type: Type.BOOLEAN},
     {name: "tutorial", type: Type.STRING},
     {name: "problem", type: Type.OBJECT, keyMap: problems},
     {name: "initZero", type: Type.BOOLEAN},
@@ -150,18 +128,9 @@ export class State {
   collectStats = false;
   numHiddenLayers = 1;
   hiddenLayerControls: any[] = [];
-  networkShape: number[] = [4, 2];
-  x = true;
-  y = true;
-  xTimesY = false;
-  xSquared = false;
-  ySquared = false;
-  cosX = false;
-  sinX = false;
-  cosY = false;
-  sinY = false;
-  dataset: dataset.DataGenerator = dataset.classifyCircleData;
-  regDataset: dataset.DataGenerator = dataset.regressPlane;
+  networkShape: number[] = [64];
+  dataset: any = null;
+  regDataset: any = null;
   seed: string;
 
   /**

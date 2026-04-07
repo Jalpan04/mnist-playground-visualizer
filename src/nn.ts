@@ -77,10 +77,10 @@ export interface ErrorFunction {
   der: (output: number, target: number) => number;
 }
 
-/** A node's activation function and its derivative. */
 export interface ActivationFunction {
   output: (input: number) => number;
   der: (input: number) => number;
+  name: string;
 }
 
 /** Function that computes a penalty cost for a given weight in the network. */
@@ -117,22 +117,26 @@ export class Activations {
     der: x => {
       let output = Activations.TANH.output(x);
       return 1 - output * output;
-    }
+    },
+    name: "tanh"
   };
   public static RELU: ActivationFunction = {
     output: x => Math.max(0, x),
-    der: x => x <= 0 ? 0 : 1
+    der: x => x <= 0 ? 0 : 1,
+    name: "relu"
   };
   public static SIGMOID: ActivationFunction = {
     output: x => 1 / (1 + Math.exp(-x)),
     der: x => {
       let output = Activations.SIGMOID.output(x);
       return output * (1 - output);
-    }
+    },
+    name: "sigmoid"
   };
   public static LINEAR: ActivationFunction = {
     output: x => x,
-    der: x => 1
+    der: x => 1,
+    name: "linear"
   };
 }
 
@@ -250,7 +254,7 @@ export function buildNetwork(
  *     nodes in the network.
  * @return The final output of the network.
  */
-export function forwardProp(network: Node[][], inputs: number[]): number {
+export function forwardProp(network: Node[][], inputs: number[]): number[] {
   let inputLayer = network[0];
   if (inputs.length !== inputLayer.length) {
     throw new Error("The number of inputs must match the number of nodes in" +
@@ -269,7 +273,7 @@ export function forwardProp(network: Node[][], inputs: number[]): number {
       node.updateOutput();
     }
   }
-  return network[network.length - 1][0].output;
+  return network[network.length - 1].map(node => node.output);
 }
 
 /**
@@ -279,12 +283,14 @@ export function forwardProp(network: Node[][], inputs: number[]): number {
  * derivatives with respect to each node, and each weight
  * in the network.
  */
-export function backProp(network: Node[][], target: number,
+export function backProp(network: Node[][], target: number[],
     errorFunc: ErrorFunction): void {
-  // The output node is a special case. We use the user-defined error
-  // function for the derivative.
-  let outputNode = network[network.length - 1][0];
-  outputNode.outputDer = errorFunc.der(outputNode.output, target);
+  // The output nodes.
+  let outputLayer = network[network.length - 1];
+  for (let i = 0; i < outputLayer.length; i++) {
+    let node = outputLayer[i];
+    node.outputDer = errorFunc.der(node.output, target[i]);
+  }
 
   // Go through the layers backwards.
   for (let layerIdx = network.length - 1; layerIdx >= 1; layerIdx--) {
