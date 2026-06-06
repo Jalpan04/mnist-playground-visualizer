@@ -2,7 +2,7 @@
 
 A high-performance, real-time interactive neural network visualizer designed for the MNIST handwritten digit dataset. 
 
-![MNIST Final UI Verification](C:/Users/acer/.gemini/antigravity/brain/a6b7d880-7874-406b-a701-39d2cc1176f8/mnist_final_ui_verification_1775591042282.png)
+A high-performance, real-time interactive neural network visualizer designed for the MNIST handwritten digit dataset.
 
 ## ✨ Features
 
