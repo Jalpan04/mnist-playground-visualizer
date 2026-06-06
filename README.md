@@ -1,6 +1,6 @@
 # 🧠 MNIST Neural Visualizer
 
-![GitHub top language](https://img.shields.io/github/languages/top/Jalpan04/mnist-playground-visualizer) ![GitHub repo size](https://img.shields.io/github/repo-size/Jalpan04/mnist-playground-visualizer) [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org) [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS) [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML) [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) ![GitHub repo size](https://img.shields.io/github/repo-size/Jalpan04/mnist-playground-visualizer) [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 
 A high-performance, real-time interactive neural network visualizer designed for the MNIST handwritten digit dataset. 
 
